@@ -79,8 +79,22 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => $this->transformUserData()
         ]);
+    }
+
+
+    private function transformUserData() {
+        $currentUser = auth('api')->user();
+
+        $userData = [
+            'id' => $currentUser['id'],
+            'email' => $currentUser['email'],
+            'name' => $currentUser['name']
+        ];
+
+        return $userData;
     }
 }
 

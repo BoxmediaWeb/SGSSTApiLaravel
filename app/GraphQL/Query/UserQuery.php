@@ -45,6 +45,7 @@ class UserQuery extends Query
     public function args(): array
     {
         return [
+            'search' => ['name' => 'search', 'type' => Type::string()],
         ];
     }
 
