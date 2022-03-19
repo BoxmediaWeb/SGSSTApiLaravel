@@ -3,22 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GraphQL\Error\Error;
 
 class subirImagenController extends Controller
 {
     public function imagen(Request $request)
     {
-        $image = $request->file('image');
-        $image->move(public_path(), 'imagenprueba.png');
+        if ($request->hasFile('image')) {
 
-        /*if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $name = 'imagen_guardada_server.jpg';
-            $image->move(public_path());
-        }*/
+            $nombre = $request->prefijo.'_'.$this->generateRandomString().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path().'/detalle_documento', $nombre);
 
-        return $request;
+            return response()->json(['nombre' => $nombre])->header('Access-Control-Allow-Origin', '*');
+        }else{
+            return new Error('Archivo no seleccionado');
+        }
+    }
 
-        //return response()->json(['patient' => $patient])->header('Access-Control-Allow-Origin', '*');
+    private function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
     }
 }

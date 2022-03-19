@@ -20,15 +20,19 @@ class UserType extends GraphQLType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'The User Id'
+                'description' => 'El id del usuario'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The User name'
+                'description' => 'El nombre del usuario'
             ],
             'email' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The User email'
+                'description' => 'El email del usuario'
+            ],
+            'avatar' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'El avatar del usuario'
             ],
         ];
     }

@@ -32,4 +32,5 @@ Route::group([
     'prefix' => 'actions'
 ], function ($router) {
     Route::post('subirImagen', 'App\Http\Controllers\subirImagenController@imagen');
+    Route::post('getDocumento', 'App\Http\Controllers\DocumentoController@descargarDocumentoMaestro');
 });

@@ -76,14 +76,23 @@ return [
             'query' => [
                 // ExampleQuery::class,
                 'user' => \App\GraphQL\Query\UserQuery::class,
+                'me' => \App\GraphQL\Query\MeQuery::class,
+                'empresa' => \App\GraphQL\Query\EmpresaQuery::class,
+                'maestroDocumento' => \App\GraphQL\Query\MaestroDocumentoQuery::class,
+                'detalleDocumento' => \App\GraphQL\Query\DetalleDocumentoQuery::class,
+                
             ],
             'mutation' => [
                 // ExampleMutation::class,
+                'detalleDocumento' => \App\GraphQL\Mutation\DetalleDocumentoMutation::class,
             ],
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
                 'user' => \App\GraphQL\Type\UserType::class,
+                'empresa' => \App\GraphQL\Type\EmpresaType::class,
+                'maestroDocumento' => \App\GraphQL\Type\MaestroDocumentoType::class,
+                'detalleDocumento' => \App\GraphQL\Type\DetalleDocumentoType::class
             ],
 
             // Laravel HTTP middleware

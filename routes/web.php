@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return '<h1>Clear Config cleared</h1>';
+});
+
+Route::get('/config-clear', function () {
+    $exitCode = Artisan::call('config:clear');
+    return '<h1>Clear Config cleared</h1>';
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
