@@ -32,7 +32,10 @@ class DetalleDocumentoMutation extends Mutation
             'ubicacion' => ['name' => 'ubicacion', 'type' => Type::string()],
             'usuario' => ['name' => 'usuario', 'type' => Type::string()],
             'fecha' => ['name' => 'fecha', 'type' => Type::string()],
-            'eliminar' => ['name' => 'eliminar', 'type' => Type::int()]
+            'eliminar' => ['name' => 'eliminar', 'type' => Type::int()],
+            'limpiar' => ['name' => 'limpiar', 'type' => Type::int()],
+            'vigencia' => ['name' => 'vigencia', 'type' => Type::string()],
+            
         ];
     }
 
@@ -57,11 +60,16 @@ class DetalleDocumentoMutation extends Mutation
                 $detalleDocumento->comentario = $args['comentario'] != '.' ? $args['comentario'] : '';
             }
 
+            if (isset($args['vigencia'])) {
+                $detalleDocumento->vigencia = $args['vigencia'] != '.' ? $args['vigencia'] : '';
+            }
+
             if (isset($args['maestro_id'])) {
                 $detalleDocumento->maestro_id = $args['maestro_id'] != '.' ? $args['maestro_id'] : '';
             }
 
             if (isset($args['ubicacion'])) {
+                File::delete(public_path().'/detalle_documento/'.$detalleDocumento->first()->ubicacion);
                 $detalleDocumento->ubicacion = $args['ubicacion'] != '.' ? $args['ubicacion'] : '';
             }
 
@@ -80,6 +88,14 @@ class DetalleDocumentoMutation extends Mutation
                 $detalleDocumento->delete();
             }
 
+            if (isset($args['limpiar'])){
+                File::delete(public_path().'/detalle_documento/'.$detalleDocumento->first()->ubicacion);
+                $detalleDocumento->fecha=null;
+                $detalleDocumento->ubicacion=null;
+                $detalleDocumento->comentario=null;
+                $detalleDocumento->usuario=null;
+            }
+
             $detalleDocumento->save();            
         } else {
 
@@ -91,6 +107,7 @@ class DetalleDocumentoMutation extends Mutation
                 'ubicacion' => isset($args['ubicacion']) && $args['ubicacion'] != '.' ?  $args['ubicacion'] : null,
                 'usuario' => isset($args['usuario']) && $args['usuario'] != '.' ?  $args['usuario'] : null,
                 'fecha' => isset($args['fecha']) && $args['fecha'] != '.' ?  $args['fecha'] : null,
+                'vigencia' => isset($args['vigencia']) && $args['vigencia'] != '.' ?  $args['vigencia'] : null,
             ]);
         }
 

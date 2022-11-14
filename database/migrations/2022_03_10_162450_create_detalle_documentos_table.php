@@ -23,6 +23,7 @@ class CreateDetalleDocumentosTable extends Migration
             $table->string('usuario')->nullable();
             $table->integer('estado')->nullable();
             $table->string('rev')->nullable();
+            $table->string('vigencia')->nullable();
             $table->timestamps();
         });
     }

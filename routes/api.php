@@ -33,4 +33,6 @@ Route::group([
 ], function ($router) {
     Route::post('subirImagen', 'App\Http\Controllers\subirImagenController@imagen');
     Route::post('getDocumento', 'App\Http\Controllers\DocumentoController@descargarDocumentoMaestro');
+    Route::post('descargarDocumento', 'App\Http\Controllers\DocumentoController@descargarDocumento');
+    Route::post('imagenPerfil', 'App\Http\Controllers\ImagenPerfilController@subir');
 });

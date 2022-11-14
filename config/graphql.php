@@ -80,11 +80,16 @@ return [
                 'empresa' => \App\GraphQL\Query\EmpresaQuery::class,
                 'maestroDocumento' => \App\GraphQL\Query\MaestroDocumentoQuery::class,
                 'detalleDocumento' => \App\GraphQL\Query\DetalleDocumentoQuery::class,
-                
+                'role' => \App\GraphQL\Query\RoleQuery::class,
+                'perfil' => \App\GraphQL\Query\PerfilQuery::class,
+                'evento' => \App\GraphQL\Query\EventoQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
                 'detalleDocumento' => \App\GraphQL\Mutation\DetalleDocumentoMutation::class,
+                'user' => \App\GraphQL\Mutation\UserMutation::class,
+                'perfil' => \App\GraphQL\Mutation\PerfilMutation::class,
+                'evento' => \App\GraphQL\Mutation\EventoMutation::class,
             ],
             // The types only available in this schema
             'types' => [
@@ -92,7 +97,10 @@ return [
                 'user' => \App\GraphQL\Type\UserType::class,
                 'empresa' => \App\GraphQL\Type\EmpresaType::class,
                 'maestroDocumento' => \App\GraphQL\Type\MaestroDocumentoType::class,
-                'detalleDocumento' => \App\GraphQL\Type\DetalleDocumentoType::class
+                'detalleDocumento' => \App\GraphQL\Type\DetalleDocumentoType::class,
+                'role' => \App\GraphQL\Type\RoleType::class,
+                'perfil' => \App\GraphQL\Type\PerfilType::class,
+                'evento' => \App\GraphQL\Type\EventoType::class,
             ],
 
             // Laravel HTTP middleware

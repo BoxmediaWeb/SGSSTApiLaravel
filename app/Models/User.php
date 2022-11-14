@@ -23,6 +23,9 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'avatar',
+        'nickname',
+        'role_id'
     ];
 
     /**
@@ -58,4 +61,21 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /*
+    public function Perfil()
+    {
+        return $this->hasOne('App\Models\Perfil');
+    }*/
+
+    public function Perfil()
+    {
+        return $this->hasOne('App\Models\Perfil', 'usuario_id', 'id');
+    }
+
+    public function Role()
+    {
+        return $this->belongsTo('App\Models\Role', 'role_id', 'id');
+    }
+
 }

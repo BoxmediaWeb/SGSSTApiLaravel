@@ -46,11 +46,18 @@ class UserQuery extends Query
     {
         return [
             'search' => ['name' => 'search', 'type' => Type::string()],
+            'id' => ['name' => 'id', 'type' => Type::int()],
         ];
     }
 
     public function resolve($root, $args)
     {
-        return User::all();
+        $user = User::query();
+
+        if(isset($args['id']) && $args['id'] !== '.') {
+            $user=$user->where('id', $args['id']);
+        }
+
+        return $user->get();
     }
 }

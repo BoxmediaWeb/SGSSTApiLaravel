@@ -22,6 +22,10 @@ class UserType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'El id del usuario'
             ],
+            'role_id' => [
+                'type' => Type::int(),
+                'description' => 'El id del usuario'
+            ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'El nombre del usuario'
@@ -33,6 +37,16 @@ class UserType extends GraphQLType
             'avatar' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'El avatar del usuario'
+            ],
+            'nickname' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'El avatar del usuario'
+            ],
+            'perfil' => [
+                'type' => GraphQL::type('perfil')
+            ],
+            'role' => [
+                'type' => GraphQL::type('role')
             ],
         ];
     }

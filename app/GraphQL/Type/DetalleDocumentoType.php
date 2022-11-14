@@ -46,6 +46,9 @@ class DetalleDocumentoType extends GraphQLType
             'rev' => [
                 'type' => Type::string(),
             ],
+            'vigencia' => [
+                'type' => Type::string(),
+            ],
             'maestroDocumento' => [
                 'type' => GraphQL::type('maestroDocumento')
             ],

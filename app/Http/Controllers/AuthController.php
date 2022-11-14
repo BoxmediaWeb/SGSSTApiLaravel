@@ -53,7 +53,6 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
 
@@ -91,7 +90,8 @@ class AuthController extends Controller
         $userData = [
             'id' => $currentUser['id'],
             'email' => $currentUser['email'],
-            'name' => $currentUser['name']
+            'name' => $currentUser['name'],
+            'avatar' => $currentUser['avatar'],
         ];
 
         return $userData;

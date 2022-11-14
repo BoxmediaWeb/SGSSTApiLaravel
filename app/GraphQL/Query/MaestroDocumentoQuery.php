@@ -27,7 +27,10 @@ class MaestroDocumentoQuery extends Query
             'id' => ['name' => 'id', 'type' => Type::id()],
             'search' => ['name' => 'search', 'type' => Type::string()],
             'ubicacion' => ['name' => 'ubicacion', 'type' => Type::string()],
-            'seccion' => ['name' => 'seccion', 'type' => Type::string()]
+            'seccion' => ['name' => 'seccion', 'type' => Type::string()],
+            'index' => ['name' => 'index', 'type' => Type::int()],
+            '_tipo_documento' => ['name' => '_tipo_documento', 'type' => Type::string()],
+            'tipo_documento' => ['name' => 'tipo_documento', 'type' => Type::string()],
         ];
     }
 
@@ -36,17 +39,25 @@ class MaestroDocumentoQuery extends Query
         $maestroDocumento = MaestroDocumento::all();
 
         if(isset($args['id']) && $args['id'] !== '.') {
-            $maestroDocumento = MaestroDocumento::where('id', $args['id'])->get();
+            $maestroDocumento=$maestroDocumento->where('id', $args['id']);
         }
         
         if(isset($args['ubicacion']) && $args['ubicacion'] !== '.') {
-            $maestroDocumento = MaestroDocumento::where('ubicacion', $args['ubicacion'])->get();
+            $maestroDocumento=$maestroDocumento->where('ubicacion', $args['ubicacion']);
         }
 
         if(isset($args['seccion']) && $args['seccion'] !== '.') {
-            $maestroDocumento = MaestroDocumento::where('seccion', $args['seccion'])->get();
+            $maestroDocumento=$maestroDocumento->where('seccion', $args['seccion']);
         }
-        
+
+        if(isset($args['_tipo_documento']) && $args['_tipo_documento'] !== '.') {
+            $maestroDocumento=$maestroDocumento->where('tipo_documento', '!=',$args['_tipo_documento']);
+        }
+
+        if(isset($args['tipo_documento']) && $args['tipo_documento'] !== '.') {
+            $maestroDocumento=$maestroDocumento->where('tipo_documento',$args['tipo_documento']);
+        }
+
         return $maestroDocumento;
     }
 }
